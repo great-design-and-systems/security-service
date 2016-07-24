@@ -23,7 +23,7 @@ module.exports = {
             if (err) {
                 callback(err);
             } else {
-                callback(null, result.session_id);
+                callback(null, result.sessionId);
             }
         });
     },

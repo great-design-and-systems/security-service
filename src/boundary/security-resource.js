@@ -33,7 +33,8 @@ module.exports = function(app) {
     app.post(API + 'validate-password', function(req, res) {
         Security.validatePassword(req.body, function(err, result) {
             if (err) {
-                res.status(401).send(new SecurityException(401));
+                //res.status(401).send(new SecurityException(401));
+                res.status(401).send({message: 'Invalid password.'});
             } else {
                 res.status(200).send({
                     message: 'ok',
@@ -44,21 +45,21 @@ module.exports = function(app) {
     });
 
     app.post(API + 'create-user-session', function(req, res) {
-        Security.createUserSession(req.body, function(err, result) {
+        Security.createUserSession(req.body.username, function(err, result) {
             if (err) {
-                res.status(500).send(new SecurityException(500));
+                res.status(500).send(err);
             } else {
                 res.status(200).send({
-                    sessionId: result
-                });
+                    sessionId: result});
             }
         });
     });
 
-    app.get(API + 'validate-session', function(req, res) {
+    app.get(API + 'validate-session/:sessionId', function(req, res) {
         Security.validateSession(req.params.sessionId, function(err, result) {
             if (err) {
-                res.status(401).send(new SecurityException(401));
+                //res.status(401).send(new SecurityException(401));
+                res.status(401).send({message: 'Invalid session.'});
             } else {
                 res.status(200).send({
                     message: 'ok',
