@@ -6,11 +6,34 @@ var chai = require('chai');
 var expect = chai.expect;
 var CONNECT_TEST_TIMEOUT = process.env.CONNECT_TEST_TIMEOUT || 50000;
 describe('Security Service BDD', function () {
-   /* var db = new Database();
+   var db = new Database();
 
     beforeEach(function (done) {
         this.timeout(CONNECT_TEST_TIMEOUT);
         return db.connect(done);
+    });
+
+    describe('GIVEN: the host is validated', function () {
+        var clientHost = 'localhost';
+        var data = {};
+
+        beforeEach(function () {
+            data = clientHost;
+        });
+
+        describe('WHEN: validating host', function () {
+            var expectedResult;
+            beforeEach(function (done) {
+                Security.validateHost(data, function(err, result) {
+                    expectedResult = err;
+                    done();
+                });
+            });
+
+            it('THEN: err is null', function () {
+                expect(expectedResult).to.equal(null);
+            });
+        });
     });
 
     describe('GIVEN: the password is validated', function () {
@@ -39,8 +62,45 @@ describe('Security Service BDD', function () {
         });
     });
 
+    describe('GIVEN: the user session is created', function () {
+        var username = 'analyn';
+        var sessionId;
+        var data = {};
+        beforeEach(function () {
+            data = username;
+        });
+
+        describe('WHEN: creating session', function () {
+            
+            beforeEach(function (done) {
+                Security.createUserSession(data, function(err, result) {
+                    sessionId = result;
+                    done();
+                });
+            });
+
+            it('THEN: response is sessionId', function () {
+                expect(!!sessionId).to.equal(true);
+            });
+
+            describe('GIVEN: I have sessionId', function () {
+                describe('WHEN: validating sessionId', function () {
+                    var expectedResponse;
+                    beforeEach(function (done) {
+                        Security.validateSession(sessionId, function(err, result) {
+                            expectedResponse = result;
+                            done();
+                        });
+                    });
+                    it('THEN: session is verified', function() {
+                        expect(expectedResponse.message).to.equal('sessionId found');
+                    });              
+                });
+            });
+        });
+    });
+
     afterEach(function (done) {
         return db.disconnect(done);
     });
-    */
 });
