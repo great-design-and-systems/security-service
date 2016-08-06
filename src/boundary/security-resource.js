@@ -10,7 +10,7 @@ module.exports = function (app) {
             links: {
                 validateHost: {
                     method: 'GET',
-                    url: 'http://' + req.headers.host + API + 'validate-host'
+                    url: 'https://' + req.headers.host + API + 'validate-host'
                 },
                 validatePassword: {
                     method: 'POST',
