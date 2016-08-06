@@ -10,7 +10,7 @@ module.exports = function (app) {
             links: {
                 validateHost: {
                     method: 'GET',
-                    url: 'http://' + req.headers.host + API + 'validate-host'
+                    url: 'http://' + req.headers.host + API + 'validate-host/:host'
                 },
                 validatePassword: {
                     method: 'POST',
@@ -27,8 +27,8 @@ module.exports = function (app) {
             }
         });
     });
-    app.get(API + 'validate-host', function (req, res) {
-        Security.validateHost(req.headers.host, function (err, result) {
+    app.get(API + 'validate-host/:host', function (req, res) {
+        Security.validateHost(req.params.host, function (err, result) {
             if (err) {
                 res.status(403).send(new SecurityException(403));
             } else {
