@@ -10,16 +10,16 @@ module.exports = {
     validatePassword: function (data, callback) {
         var password = data.password;
         var userPassword = data.currentPassword;
-        new ValidatePassword(password, userPassword, function(result) {
+        new ValidatePassword(password, userPassword, function (result) {
             if (result) {
-                callback(null, true);
+                callback(undefined, true);
             } else {
                 callback(true);
             }
         });
     },
-    createUserSession : function (username, callback) {
-        new CreateSession(username, function(err, result) {
+    createUserSession: function (username, callback) {
+        new CreateSession(username, function (err, result) {
             if (err) {
                 callback(err);
             } else {
@@ -27,7 +27,7 @@ module.exports = {
             }
         });
     },
-    validateSession : function (sessionId, callback) {
+    validateSession: function (sessionId, callback) {
         new ValidateSession(sessionId, callback);
     }
 };
