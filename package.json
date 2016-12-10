@@ -4,14 +4,15 @@
   "description": "Security Microservice",
   "main": "index.js",
   "scripts": {
-        "test": "gulp jshint test watch",
-        "start": "gulp start",
-        "update": "gulp pull",
-        "gulp": "node_modules/.bin/gulp",
-        "stop": "gulp server-stop",
-        "restart": "gulp server-restart",
-        "container-start": "/bin/bash /app/scripts/start.sh",
-        "container": "gulp pull && gulp start"
+    "dev": "nodemon --exec node index.js",
+    "test": "gulp jshint test watch",
+    "start": "gulp start",
+    "update": "gulp pull",
+    "gulp": "node_modules/.bin/gulp",
+    "stop": "gulp server-stop",
+    "restart": "gulp server-restart",
+    "container-start": "/bin/bash /app/scripts/start.sh",
+    "container": "gulp pull && gulp start"
   },
   "keywords": [
     "security-service"
