@@ -4,22 +4,13 @@ module.exports = function(code) {
     var exception;
     switch(code) {
         case 401:
-            exception = {
-                error: 'Unauthorized',
-                message: 'User Authentication Failed.'
-            }; 
+            exception = new Error('User Authentication Failed.');
             break;
         case 403:
-            exception = {
-                error: 'Forbidden',
-                message: 'Access Denied.'
-            }; 
+            exception = new Error('Access denied');
             break;
         case 500:
-            exception = {
-                error: 'Internal Server Error',
-                message: 'Failed to create user session.'
-            }; 
+            exception = new Error('Failed to create user name');
             break;           
     }
     return exception;
